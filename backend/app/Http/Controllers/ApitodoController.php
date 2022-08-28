@@ -30,13 +30,15 @@ class ApitodoController extends Controller
             return response()->json($response);
         }
         catch(\Exception $e){
+            $message="Message: ".$e->getMessage().",File:".$e->getFile().",Line:".$e->getLine();
+
             $response ["success"]=[
                 "statusCode"=>501,
                 "success Message"=>"error in todo table",
-                "server reference code"=>$now
+                "server reference code"=>$now,
+                "message"=>$message
             ];
-            $message="Message: ".$e->getMessage().",File:".$e->getFile().",Line:".$e->getLine();
-       
+           
             return response()->json($response);
         }
     }
@@ -65,7 +67,9 @@ class ApitodoController extends Controller
             );
 
             $check_id=DB::table('apitodos')->get();
-            $id=$check_id[0]->id;
+            if(count($check_id) != 0){
+                $id=$check_id[0]->id;
+            }
             //return response()->json($id);
             
            if(count($check_id)<=0){
@@ -103,12 +107,14 @@ class ApitodoController extends Controller
             return response()->json($response);
            }
        catch(\Exception $e){
+        $message="Message: ".$e->getMessage().",File:".$e->getFile().",Line:".$e->getLine();
+
             $response ["success"]=[
                 "statusCode"=>501,
                 "success Message"=>"error in insertion of todo table",
-                "server reference code"=>$now
+                "server reference code"=>$now,
+                "message"=>$message,
             ];
-            $message="Message: ".$e->getMessage().",File:".$e->getFile().",Line:".$e->getLine();
             return response()->json($response);
         }  
    

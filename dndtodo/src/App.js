@@ -10,31 +10,50 @@ const [todo,setTodo]=useState([]);
 const [tiplist,setTip]=useState([]);
 const [cplist,setCp]=useState([]);
 const [task,setTask]=useState('');
+const[count,setCount]=useState(1)
 useEffect(()=>{
+getDataFromServer();
+},[])
 
-},[todo])
+const getDataFromServer=async()=>{
+  const response=await fetchApi.doApi('api/getTodo','GET',null,0);
+ if(response.todo_data[0]!==0){ setTodo(JSON.parse(response.todo_data[0].todo));
+  setTip(JSON.parse(response.todo_data[0].task_in_progress));
+  setCp(JSON.parse(response.todo_data[0].task_done));}
+}
 
 
 
 const addTask=(e)=>{ 
+ setCount(2)
   e.preventDefault()  
   var length=todo.length+1;
   if(task!==""){
-    var add_data_to_list = {'id':""+length,'text':task}
+    console.log('aaa');
+    var add_data_to_list = {'id':""+Date.now(),'text':task}
     setTodo(current => [...current,add_data_to_list])
     setTask('') 
+    // addDataToServer(JSON.stringify(todo),JSON.stringify(tiplist),JSON.stringify(cplist))
   }
   else{
     alert('Type a valid task')
   }
-  addDataToServer(JSON.stringify(todo),JSON.stringify(tiplist),JSON.stringify(cplist))
 
 }
-function handleOnDragEnd(result){
-  handleDrag(result).then(()=>{
-    addDataToServer(JSON.stringify(todo),JSON.stringify(tiplist),JSON.stringify(cplist))
 
-  });
+useEffect(() => {
+  console.log(count);
+  if(count>1){
+  addDataToServer(JSON.stringify(todo),JSON.stringify(tiplist),JSON.stringify(cplist))
+}
+}, [todo, tiplist, cplist])
+
+function handleOnDragEnd(result){
+  setCount(2)
+  handleDrag(result)
+  // addDataToServer(JSON.stringify(todo),JSON.stringify(tiplist),JSON.stringify(cplist))
+
+  
   
 
 }
