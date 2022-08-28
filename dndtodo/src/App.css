@@ -50,6 +50,8 @@ body{
 li{
   list-style: none;
   background-color: darkgrey;
+  border: 1px solid #000;
+  
   
 }
 li:after{
@@ -70,11 +72,22 @@ border-radius: 0px !important;
 }
 .cart{
   margin:2em;
- border-radius: 0px !important;
- border: 2px solid #000;
+ border-radius: 0px !important; 
+ 
  }
- .card-title{
-  border-bottom: 2px solid #000;
+ .card-title {
+  border: 1px solid #000;
   background-color: tomato;
   color: #000;
+ }
+ .card-body{
+  border: 2px solid #000;
+
+ }
+ ul{
+  padding: 2px;
+  padding-inline-start: 1px !important;
+ }
+ p{
+  padding:0 2px 0 2px;
  }
