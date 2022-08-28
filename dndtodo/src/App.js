@@ -32,6 +32,7 @@ const addTask=(e)=>{
 }
 function handleOnDragEnd(result){
   handleDrag(result);
+  
   addDataToServer(JSON.stringify(todo),JSON.stringify(tiplist),JSON.stringify(cplist))
 
 }
@@ -161,7 +162,7 @@ const  addDataToServer= async(todo,tip,cp)=>{
       <div className='  d-flex justify-content-center col-md-12 mb-2 mt-4'>
         
           <input className='col-md-3 d-flex justify-content-around' type='text'value={task} onChange={(e)=>setTask(e.target.value)} placeholder="Write your task"/>
-          <button type='submit' onClick={(e)=>addTask(e)} className='col-md-2 tbutton'>Add</button>
+          <button type='submit' onClick={(e)=>addTask(e)} className='col-md-1 tbutton'>Add</button>
        
       </div>
       </form>

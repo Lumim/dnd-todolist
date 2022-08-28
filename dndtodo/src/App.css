@@ -91,3 +91,6 @@ border-radius: 0px !important;
  p{
   padding:0 2px 0 2px;
  }
+ input.placeholder {
+  text-align: center;
+}
