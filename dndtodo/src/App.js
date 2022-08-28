@@ -31,9 +31,11 @@ const addTask=(e)=>{
 
 }
 function handleOnDragEnd(result){
-  handleDrag(result);
+  handleDrag(result).then(()=>{
+    addDataToServer(JSON.stringify(todo),JSON.stringify(tiplist),JSON.stringify(cplist))
+
+  });
   
-  addDataToServer(JSON.stringify(todo),JSON.stringify(tiplist),JSON.stringify(cplist))
 
 }
 
@@ -149,8 +151,8 @@ function handleDrag(result) {
 }  
 
 const  addDataToServer= async(todo,tip,cp)=>{
-  const todo_data=await{todo_data:{todo,tip,cp}}
- //console.log(todo_data)
+  const todo_data={todo_data:{todo,tip,cp}}
+ console.log(todo_data)
  const res=await fetchApi.doApi("api/addTodo",'POST',todo_data,0);
  console.log(res)
 }

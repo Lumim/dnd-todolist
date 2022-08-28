@@ -18,9 +18,7 @@ class ApitodoController extends Controller
         $now = date('y-m-d H:i:s');
         try{
 
-            $data = DB::table('apitodos')
-            
-            ->get();
+            $data = DB::table('apitodos')->get();
             
             $response["success"]=[
                 "statusCode"=>200,
@@ -34,7 +32,7 @@ class ApitodoController extends Controller
         catch(\Exception $e){
             $response ["success"]=[
                 "statusCode"=>501,
-                "success Message"=>"error in found all players name",
+                "success Message"=>"error in todo table",
                 "server reference code"=>$now
             ];
             $message="Message: ".$e->getMessage().",File:".$e->getFile().",Line:".$e->getLine();
@@ -67,14 +65,18 @@ class ApitodoController extends Controller
             );
 
             $check_id=DB::table('apitodos')->get();
+            $id=$check_id[0]->id;
+            //return response()->json($id);
             
            if(count($check_id)<=0){
-            $db_insert= DB::table('apitodos')->insert($data);
+                //return response()->json('here  '.$id);
+                $db_insert= DB::table('apitodos')->insert($data);
             }
             else{
-                $db_insert2= DB::table('apitodos')->where('id', 3)->update($data);
+                //return response()->json('there  '.$id);
+                $db_insert2= DB::table('apitodos')->where('id',$id)->update(array('todo' => $data['todo'],'task_in_progress'=>$data['task_in_progress'],'task_done'=>$data['task_done']));
             }
-            if($db_insert){
+            if(isset($db_insert)){
                 $response["success"]=[
                     "statusCode"=>204,
                     "success Message"=>"data inserted",
@@ -92,7 +94,14 @@ class ApitodoController extends Controller
                 $response['data']=$data;
                 return response()->json($response);
             }
-          }
+            $response["success"]=[
+                "statuc Code" => 300,
+                "success message"=>"data updated",
+                "server reference code"=>$now
+            ];
+            $response['data']=$data;
+            return response()->json($response);
+           }
        catch(\Exception $e){
             $response ["success"]=[
                 "statusCode"=>501,
@@ -101,7 +110,7 @@ class ApitodoController extends Controller
             ];
             $message="Message: ".$e->getMessage().",File:".$e->getFile().",Line:".$e->getLine();
             return response()->json($response);
-        } 
+        }  
    
     }
 
