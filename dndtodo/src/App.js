@@ -188,7 +188,7 @@ const  addDataToServer= async(todo,tip,cp)=>{
       </div>
       </form>
        
-      <div className='row'>
+      <div className='row datas'>
       <DragDropContext  onDragEnd={handleOnDragEnd}>
           <div className='cart col-md-3'>
             <div className='card-title '>

@@ -40,18 +40,12 @@ body{
   padding-left: 3em;
   overflow-x: hidden;
 }
-.ltodo{
 
-  
-}
-.ct{
-  
-}
 li{
   list-style: none;
   background-color: darkgrey;
   border: 1px solid #000;
-  
+  margin: 0 50px 0 50px;
   
 }
 li:after{
@@ -81,7 +75,7 @@ border-radius: 0px !important;
   color: #000;
  }
  .card-body{
-  border: 2px solid #000;
+  border: 1px solid #000;
 
  }
  ul{
@@ -89,8 +83,11 @@ border-radius: 0px !important;
   padding-inline-start: 1px !important;
  }
  p{
-  padding:0 2px 0 2px;
+  padding:0 4px 0 4px;
  }
  input.placeholder {
   text-align: center;
+}
+.datas{
+  padding-left:3em;
 }
