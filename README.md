@@ -3,19 +3,21 @@
 
 # front-end setup: (must have npm and node installed)
  in cmd:
- 
+```bash
  cd dndtodo
  npm start
-
+```
 //this will start the frontend server on port 3000
 
 # Backend setup (must have laravel installed - prefered version 9)
   in cmd:
   
+  ```bash
   cd backend
   composer update 
   php artisan migrate
   php artisan serve
+  ```
 
 // This will start the backend server on port 8000
   Make sure " .env " file is modified, create and connect to a database from mysql.
