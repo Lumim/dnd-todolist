@@ -18,5 +18,6 @@
   php artisan serve
 
 // This will start the backend server on port 8000
-  Make sure** .env **file is modified, create and connect to a database from mysql.
-Now in browser - localhost:3000  will be prompt up, enjoy Drag and Drop - Track your Todo list !
+  Make sure " .env " file is modified, create and connect to a database from mysql.
+  
+### Now in browser - localhost:3000  will be prompt up, enjoy Drag and Drop - Track your Todo list !
